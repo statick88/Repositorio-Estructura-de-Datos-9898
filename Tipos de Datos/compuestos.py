@@ -110,3 +110,39 @@ print(cliente001.get("Celular"))
 cliente001["Nombre"] = "Juan"
 print(cliente001.get("Nombre"))
 print(cliente001)
+
+print(len(cliente001))
+
+cliente001["estadoCivil"] = "Viudo"
+print(cliente001)
+
+cliente001.popitem()
+print(cliente001)
+
+cliente001.pop("Celular")
+print(cliente001)
+
+del cliente001["Cedula"]
+print(cliente001)
+
+cliente002 = dict(cliente001)
+print(cliente001)
+print(cliente002)
+
+perros = {
+    "Tobby":{
+    "name": "Tobby",
+    "age": 6
+    },
+    "Leo":{
+    "name": "Leo",
+    "age": 1
+    }
+}
+print(perros)
+
+Rocky = dict(name="Rocky", age=7)
+print(Rocky)
+
+perros["Rocky"] = Rocky
+print(perros)
