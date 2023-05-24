@@ -146,3 +146,13 @@ print(Rocky)
 
 perros["Rocky"] = Rocky
 print(perros)
+
+# Boolean
+
+nacidoVivo = True
+agenteCredito = False
+
+print(type(nacidoVivo))
+print(type(agenteCredito))
+
+print(2>5)
