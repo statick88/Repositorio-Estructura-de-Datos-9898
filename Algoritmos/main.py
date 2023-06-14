@@ -1,184 +1,183 @@
-class Pelicula:
-    def __init__(self, nombre, anio):
-        self.nombre = nombre
-        self.anio = anio
+class Libro:
+    def __init__(self, autor, anio_public):
+        self.autor = autor
+        self.anio_public = anio_public
 
     def __str__(self):
-        return f"{self.nombre} ({self.anio})"
+        return f"{self.autor} ({self.anio_public})"
 
 
-def mostrar_peliculas(peliculas):
-    if peliculas:
-        print("Películas ingresadas:")
-        for pelicula in peliculas:
-            print(pelicula)
+def mostrar_libros(Libros):
+    if Libros:
+        print("Libros ingresados:")
+        for libro in Libros:
+            print(libro)
     else:
-        print("No se han ingresado películas.")
+        print("No se han ingresado libros.")
 
 
-def eliminar_pelicula(peliculas):
-    if peliculas:
-        nombre = input("Ingrese el nombre de la película a eliminar: ")
-        peliculas_filtradas = [pelicula for pelicula in peliculas if pelicula.nombre != nombre]
-        if len(peliculas_filtradas) < len(peliculas):
-            peliculas[:] = peliculas_filtradas
-            print("Película eliminada exitosamente.")
+def eliminar_libro(Libros):
+    if Libros:
+        autor = input("Ingrese el autor del libro a eliminar: ")
+        Libros_filtrados = [libro for libro in Libros if libro.autor != autor]
+        if len(Libros_filtrados) < len(Libros):
+            Libros[:] = Libros_filtrados
+            print("Libro se ha eliminado exitosamente.")
         else:
-            print("No se encontró una película con ese nombre.")
+            print("No se encontró un libro con ese autor.")
     else:
-        print("No se han ingresado películas.")
+        print("No se han ingresado libros.")
 
 
-
-def modificar_pelicula(peliculas):
-    if peliculas:
-        nombre = input("Ingrese el nombre de la película a modificar: ")
-        for pelicula in peliculas:
-            if pelicula.nombre == nombre:
-                nuevo_nombre = input("Ingrese el nuevo nombre de la película: ")
-                nuevo_anio = int(input("Ingrese el nuevo año de la película: "))
-                pelicula.nombre = nuevo_nombre
-                pelicula.anio = nuevo_anio
-                print("Película modificada exitosamente.")
+def modificar_libro(Libros):
+    if Libros:
+        autor = input("Ingrese el autor del libro a modificar: ")
+        for libro in Libros:
+            if libro.autor == autor:
+                nuevo_autor = input("Ingrese el nuevo autor del libro: ")
+                nuevo_anio_public = int(input("Ingrese el nuevo año de publicación del libro: "))
+                libro.autor = nuevo_autor
+                libro.anio_public = nuevo_anio_public
+                print("Libro se ha modificado exitosamente.")
                 return
-        print("No se encontró una película con ese nombre.")
+        print("No se encontró el libro con ese autor.")
     else:
-        print("No se han ingresado películas.")
+        print("No se han ingresado libros.")
 
 
-def ordenar_peliculas(peliculas, criterio):
-    if peliculas:
-        if criterio == "nombre":
+def ordenar_libros(Libros, criterio):
+    if Libros:
+        if criterio == "autor":
             algoritmo = input("Ingrese el algoritmo de ordenamiento a utilizar (burbuja, shell, quick): ")
             if algoritmo == "burbuja":
-                peliculas.sort(key=lambda pelicula: pelicula.nombre)
+                Libros.sort(key=lambda libro: libro.autor)
             elif algoritmo == "shell":
-                # Implementar el algoritmo de ordenamiento ShellSort por nombre
-                def shell_sort_nombre(peliculas):
-                    n = len(peliculas)
+                # Implementar el algoritmo de ordenamiento ShellSort por autor
+                def shell_sort_autor(Libros):
+                    n = len(Libros)
                     gap = n // 2
 
                     while gap > 0:
                         for i in range(gap, n):
-                            temp = peliculas[i]
+                            temp = Libros[i]
                             j = i
 
-                            while j >= gap and peliculas[j - gap].nombre > temp.nombre:
-                                peliculas[j] = peliculas[j - gap]
+                            while j >= gap and Libros[j - gap].autor > temp.autor:
+                                Libros[j] = Libros[j - gap]
                                 j -= gap
 
-                            peliculas[j] = temp
+                            Libros[j] = temp
 
                         gap //= 2
 
-                shell_sort_nombre(peliculas)
+                shell_sort_autor(Libros)
             elif algoritmo == "quick":
-                # Implementar el algoritmo de ordenamiento Quicksort por nombre
-                def partition_nombre(peliculas, low, high):
-                    pivot = peliculas[high].nombre
+                # Implementar el algoritmo de ordenamiento Quicksort por autor
+                def partition_autor(Libros, low, high):
+                    pivot = Libros[high].autor
                     i = low - 1
 
                     for j in range(low, high):
-                        if peliculas[j].nombre < pivot:
+                        if Libros[j].autor < pivot:
                             i += 1
-                            peliculas[i], peliculas[j] = peliculas[j], peliculas[i]
+                            Libros[i], Libros[j] = Libros[j], Libros[i]
 
-                    peliculas[i + 1], peliculas[high] = peliculas[high], peliculas[i + 1]
+                    Libros[i + 1], Libros[high] = Libros[high], Libros[i + 1]
                     return i + 1
 
-                def quick_sort_nombre(peliculas, low, high):
+                def quick_sort_autor(Libros, low, high):
                     if low < high:
-                        pivot_index = partition_nombre(peliculas, low, high)
-                        quick_sort_nombre(peliculas, low, pivot_index - 1)
-                        quick_sort_nombre(peliculas, pivot_index + 1, high)
+                        pivot_index = partition_autor(Libros, low, high)
+                        quick_sort_autor(Libros, low, pivot_index - 1)
+                        quick_sort_autor(Libros, pivot_index + 1, high)
 
-                quick_sort_nombre(peliculas, 0, len(peliculas) - 1)
+                quick_sort_autor(Libros, 0, len(Libros) - 1)
             else:
                 print("Algoritmo de ordenamiento inválido.")
-        elif criterio == "anio":
+        elif criterio == "anio_public":
             algoritmo = input("Ingrese el algoritmo de ordenamiento a utilizar (burbuja, shell, quick): ")
             if algoritmo == "burbuja":
-                peliculas.sort(key=lambda pelicula: pelicula.anio)
+                Libros.sort(key=lambda libro: libro.anio_public)
             elif algoritmo == "shell":
                 # Implementar el algoritmo de ordenamiento ShellSort por año
-                def shell_sort_anio(peliculas):
-                    n = len(peliculas)
+                def shell_sort_anio_public(Libros):
+                    n = len(Libros)
                     gap = n // 2
 
                     while gap > 0:
                         for i in range(gap, n):
-                            temp = peliculas[i]
+                            temp = Libros[i]
                             j = i
 
-                            while j >= gap and peliculas[j - gap].anio > temp.anio:
-                                peliculas[j] = peliculas[j - gap]
+                            while j >= gap and Libros[j - gap].anio_public > temp.anio_public:
+                                Libros[j] = Libros[j - gap]
                                 j -= gap
 
-                            peliculas[j] = temp
+                            Libros[j] = temp
 
                         gap //= 2
 
-                shell_sort_anio(peliculas)
+                shell_sort_anio_public(Libros)
             elif algoritmo == "quick":
                 # Implementar el algoritmo de ordenamiento Quicksort por año
-                def partition_anio(peliculas, low, high):
-                    pivot = peliculas[high].anio
+                def partition_anio_public(Libros, low, high):
+                    pivot = Libros[high].anio_public
                     i = low - 1
 
                     for j in range(low, high):
-                        if peliculas[j].anio < pivot:
+                        if Libros[j].anio_public < pivot:
                             i += 1
-                            peliculas[i], peliculas[j] = peliculas[j], peliculas[i]
+                            Libros[i], Libros[j] = Libros[j], Libros[i]
 
-                    peliculas[i + 1], peliculas[high] = peliculas[high], peliculas[i + 1]
+                    Libros[i + 1], Libros[high] = Libros[high], Libros[i + 1]
                     return i + 1
 
-                def quick_sort_anio(peliculas, low, high):
+                def quick_sort_anio_public(Libros, low, high):
                     if low < high:
-                        pivot_index = partition_anio(peliculas, low, high)
-                        quick_sort_anio(peliculas, low, pivot_index - 1)
-                        quick_sort_anio(peliculas, pivot_index + 1, high)
+                        pivot_index = partition_anio_public(Libros, low, high)
+                        quick_sort_anio_public(Libros, low, pivot_index - 1)
+                        quick_sort_anio_public(Libros, pivot_index + 1, high)
 
-                quick_sort_anio(peliculas, 0, len(peliculas) - 1)
+                quick_sort_anio_public(Libros, 0, len(Libros) - 1)
             else:
                 print("Algoritmo de ordenamiento inválido.")
         else:
             print("Criterio de ordenamiento inválido.")
     else:
-        print("No se han ingresado películas.")
+        print("No se han ingresado libros.")
 
 
 def menu():
-    peliculas = []
+    Libros = []
 
     while True:
         print("------ MENÚ ------")
-        print("1. Ingresar película")
-        print("2. Mostrar películas")
-        print("3. Eliminar película")
-        print("4. Modificar película")
-        print("5. Ordenar películas por nombre")
-        print("6. Ordenar películas por año")
+        print("1. Ingresar libro")
+        print("2. Mostrar libros")
+        print("3. Eliminar libro")
+        print("4. Modificar libro")
+        print("5. Ordenar libros por autor")
+        print("6. Ordenar libros por año")
         print("0. Salir")
 
         opcion = input("Ingrese una opción: ")
 
         if opcion == "1":
-            nombre = input("Ingrese el nombre de la película: ")
-            anio = int(input("Ingrese el año de la película: "))
-            pelicula = Pelicula(nombre, anio)
-            peliculas.append(pelicula)
-            print("Película ingresada exitosamente.")
+            autor = input("Ingrese el autor del libro: ")
+            anio_public = int(input("Ingrese el año de publicación del libro: "))
+            libro = Libro(autor, anio_public)
+            Libros.append(libro)
+            print("Libro ingresado exitosamente.")
         elif opcion == "2":
-            mostrar_peliculas(peliculas)
+            mostrar_libros(Libros)
         elif opcion == "3":
-            eliminar_pelicula(peliculas)
+            eliminar_libro(Libros)
         elif opcion == "4":
-            modificar_pelicula(peliculas)
+            modificar_libro(Libros)
         elif opcion == "5":
-            ordenar_peliculas(peliculas, "nombre")
+            ordenar_libros(Libros, "autor")
         elif opcion == "6":
-            ordenar_peliculas(peliculas, "anio")
+            ordenar_libros(Libros, "anio_public")
         elif opcion == "0":
             print("¡Hasta luego!")
             break
