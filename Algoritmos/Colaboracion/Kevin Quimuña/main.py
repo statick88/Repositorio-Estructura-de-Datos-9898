@@ -1,3 +1,4 @@
+#de peliculas a mascotas
 class Mascotas:
     def __init__(self, nombre, anio):
         self.nombre = nombre
