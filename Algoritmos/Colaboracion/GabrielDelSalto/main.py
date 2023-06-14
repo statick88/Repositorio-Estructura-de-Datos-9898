@@ -1,10 +1,10 @@
 class Pelicula:
-    def __init__(self, nombre, anio):
+    def __init__(self, nombre, anio, director):
         self.nombre = nombre
         self.anio = anio
-
+        self.director = director
     def __str__(self):
-        return f"{self.nombre} ({self.anio})"
+        return f"{self.nombre} ({self.anio}) ({self.director})"
 
 
 def mostrar_peliculas(peliculas):
@@ -37,8 +37,10 @@ def modificar_pelicula(peliculas):
             if pelicula.nombre == nombre:
                 nuevo_nombre = input("Ingrese el nuevo nombre de la película: ")
                 nuevo_anio = int(input("Ingrese el nuevo año de la película: "))
+                nuevo_director = int(input("Ingrese el director de la película: "))
                 pelicula.nombre = nuevo_nombre
                 pelicula.anio = nuevo_anio
+                pelicula.director = nuevo_director
                 print("Película modificada exitosamente.")
                 return
         print("No se encontró una película con ese nombre.")
@@ -166,7 +168,9 @@ def menu():
         if opcion == "1":
             nombre = input("Ingrese el nombre de la película: ")
             anio = int(input("Ingrese el año de la película: "))
-            pelicula = Pelicula(nombre, anio)
+            director = input("Ingrese director de la película: ")
+    
+            pelicula = Pelicula(nombre, anio, director)
             peliculas.append(pelicula)
             print("Película ingresada exitosamente.")
         elif opcion == "2":
